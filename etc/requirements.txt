@@ -5,4 +5,9 @@
 # - ./entrypoint.sh:/entrypoint.sh
 # then down the docker container ($ docker-compose down) and up it again ($ docker-compose up -d).
 # -----------------------
-# paramiko==2.7.2 # for auto_backup module
+google-generativeai
+dropbox
+pyncclient
+nextcloud-api-wrapper
+boto3
+paramiko
