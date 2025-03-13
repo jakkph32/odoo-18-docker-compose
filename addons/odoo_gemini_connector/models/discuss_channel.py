@@ -143,11 +143,11 @@ class Channel(models.Model):
 
     def _notify_thread(self, message, msg_vals=None, **kwargs):
         rdata = super(Channel, self)._notify_thread(message, msg_vals=msg_vals, **kwargs)
-        partner_gemini = self.env.ref("googel_gemini_odoo_connector.partner_gemini")
-        user_gemini = self.env.ref("googel_gemini_odoo_connector.user_gemini")
+        partner_gemini = self.env.ref("odoo_gemini_connector.partner_gemini")
+        user_gemini = self.env.ref("odoo_gemini_connector.user_gemini")
         author_id = msg_vals.get('author_id')
-        gemini_model = self.env['ir.config_parameter'].sudo().get_param('googel_gemini_odoo_connector.gemini_model')
-        gemini_api_key = self.env['ir.config_parameter'].sudo().get_param('googel_gemini_odoo_connector.gemini_api_key')
+        gemini_model = self.env['ir.config_parameter'].sudo().get_param('odoo_gemini_connector.gemini_model')
+        gemini_api_key = self.env['ir.config_parameter'].sudo().get_param('odoo_gemini_connector.gemini_api_key')
         discuss_channel_id = self.env['discuss.channel'].browse(msg_vals.get('res_id', 0))
         partner_ids = discuss_channel_id.channel_partner_ids
         try:
