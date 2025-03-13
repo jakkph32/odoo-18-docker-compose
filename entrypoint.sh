@@ -10,11 +10,10 @@ set -e
 : ${PASSWORD:=${DB_ENV_POSTGRES_PASSWORD:=${POSTGRES_PASSWORD:='odoo18@2030'}}}
 
 # install python packages
-apt-get install python3-venv -y --no-install-recommends
+apt-get update && apt-get install python3-venv -y --no-install-recommends
 python3 -m venv /etc/odoo/venv
-source /etc/odoo/venv/bin/activate
-pip3 install pip --upgrade
-pip3 install -r /etc/odoo/requirements.txt
+cd /etc/odoo && source venv/bin/activate
+pip3 install -q -U google-generativeai dropbox pyncclient nextcloud-api-wrapper boto3 paramiko
 
 # sed -i 's|raise werkzeug.exceptions.BadRequest(msg)|self.jsonrequest = {}|g' /usr/lib/python3/dist-packages/odoo/http.py
 
