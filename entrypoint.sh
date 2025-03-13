@@ -10,6 +10,9 @@ set -e
 : ${PASSWORD:=${DB_ENV_POSTGRES_PASSWORD:=${POSTGRES_PASSWORD:='odoo18@2030'}}}
 
 # install python packages
+apt-get install python3-venv -y --no-install-recommends
+python3 -m venv /etc/odoo/venv
+source /etc/odoo/venv/bin/activate
 pip3 install pip --upgrade
 pip3 install -r /etc/odoo/requirements.txt
 
