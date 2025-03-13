@@ -10,6 +10,8 @@ services:
     restart: always             # run as a service
     volumes:
         - ./postgresql:/var/lib/postgresql/data
+    ports:
+      - 5432:5432/tcp
 
   odoo18:
     image: odoo:18
@@ -29,7 +31,6 @@ services:
     volumes:
       #- /etc/timezone:/etc/timezone:ro
       # - /etc/localtime:/etc/localtime:ro
-      - ./wait-for-psql.py
       - ./entrypoint.sh:/entrypoint.sh   # if you want to install additional Python packages, uncomment this line!
       - ./addons:/mnt/extra-addons
       - ./etc:/etc/odoo
