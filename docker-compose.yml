@@ -17,8 +17,9 @@ services:
     depends_on:
       - db
     ports:
-      - "10018:8069"
-      - "20018:8072" # live chat
+      - "10069:8069"
+      - "10071:8071"
+      - "10072:8072" # live chat
     tty: true
     command: --
     environment:
@@ -27,8 +28,9 @@ services:
       - PASSWORD=odoo18@2030
     volumes:
       #- /etc/timezone:/etc/timezone:ro
-      #- /etc/localtime:/etc/localtime:ro
-      # - ./entrypoint.sh:/entrypoint.sh   # if you want to install additional Python packages, uncomment this line!
+      # - /etc/localtime:/etc/localtime:ro
+      - ./wait-for-psql.py
+      - ./entrypoint.sh:/entrypoint.sh   # if you want to install additional Python packages, uncomment this line!
       - ./addons:/mnt/extra-addons
       - ./etc:/etc/odoo
     restart: always             # run as a service
